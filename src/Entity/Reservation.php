@@ -34,7 +34,7 @@ class Reservation
     private $client;
 
     #[ORM\ManyToOne(targetEntity: Passager::class, inversedBy: 'reservations')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $passager;
 
     public function getId(): ?int

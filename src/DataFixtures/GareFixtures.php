@@ -3,17 +3,20 @@
 namespace App\DataFixtures;
 
 use App\Entity\Gare;
-use App\Repository\VilleRepository;
+use App\Entity\Ville;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use Symfony\Bridge\Doctrine\ManagerRegistry;
 
-class GareFixtures extends Fixture
+class GareFixtures extends Fixture implements FixtureInterface, OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        $villeR = new VilleRepository();
-        $villes = $villeR->findAll();
+        //$managertest = new ManagerRegistry();
+        //$villeR = new VilleRepository($manager);
+        //$villes = $villeR->findAll();
+        $villes = $manager->getRepository(Ville::class)->findAll();
         foreach ($villes as $ville) {
 
             $gare = new Gare();
@@ -24,4 +27,9 @@ class GareFixtures extends Fixture
 
         $manager->flush();
     }
+
+    public function getOrder() {
+        return 2;
+    }
+
 }

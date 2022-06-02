@@ -23,7 +23,7 @@ class Ville
     #[ORM\Column(type: 'integer', nullable: true)]
     private $cp;
 
-    #[ORM\OneToMany(mappedBy: 'id_ville', targetEntity: Gare::class)]
+    #[ORM\OneToMany(mappedBy: 'ville', targetEntity: Gare::class)]
     private $gares;
 
     public function __construct()
