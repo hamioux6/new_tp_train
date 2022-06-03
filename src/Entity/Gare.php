@@ -124,4 +124,5 @@ class Gare
 
         return $this;
     }
+
 }

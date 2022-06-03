@@ -20,9 +20,6 @@ class Companie
     #[ORM\Column(type: 'string', length: 50)]
     private $nom;
 
-    #[ORM\Column(type: 'boolean')]
-    private $annule;
-
     #[ORM\OneToMany(mappedBy: 'companie', targetEntity: Train::class)]
     private $trains;
 
@@ -44,18 +41,6 @@ class Companie
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function isAnnule(): ?bool
-    {
-        return $this->annule;
-    }
-
-    public function setAnnule(bool $annule): self
-    {
-        $this->annule = $annule;
 
         return $this;
     }

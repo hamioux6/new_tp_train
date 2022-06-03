@@ -50,6 +50,9 @@ class Train
     #[ORM\OneToMany(mappedBy: 'train', targetEntity: Reservation::class)]
     private $reservations;
 
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $reservationclosed;
+
     public function __construct()
     {
         $this->arrets = new ArrayCollection();
@@ -213,6 +216,18 @@ class Train
                 $reservation->setTrain(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isReservationclosed(): ?bool
+    {
+        return $this->reservationclosed;
+    }
+
+    public function setReservationclosed(?bool $reservationclosed): self
+    {
+        $this->reservationclosed = $reservationclosed;
 
         return $this;
     }
